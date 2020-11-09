@@ -8,4 +8,4 @@ RUN bash -c 'touch /home/NotificationService/app.jar'
 RUN chmod 777 /home/NotificationService/app.jar
 USER 1001
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/home/NotificationService/app.jar"]
-EXPOSE 8080
+EXPOSE 8082
