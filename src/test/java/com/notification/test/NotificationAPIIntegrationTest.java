@@ -65,15 +65,6 @@ public class NotificationAPIIntegrationTest {
     }
 
     @Test
-    public void testNotifyAllSuccess() throws Exception {
-        String url = prepareUrl();
-        mvc.perform(post(url)
-                .content(generateMessageJson())
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
-
-    @Test
     public void testNotifySlackSuccess() throws Exception {
         String url = prepareUrl(ChannelType.slack);
         mvc.perform(post(url)
@@ -104,11 +95,6 @@ public class NotificationAPIIntegrationTest {
                 .content(generateInvalidMessageJson())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
-    }
-
-    private String prepareUrl() {
-        // http://localhost:8080//api/v1.0/notifier/notifyAll
-        return prepareURLWithPort("/notifyAll");
     }
 
     private String prepareUrl(ChannelType type) {

@@ -64,27 +64,10 @@ public class NotificationController {
 			}
 		}
 
-		KafkaUser user = new KafkaUser();
-		user.setBody(msg.getBody());
-		user.setSubject(msg.getSubject());
-		user.setFrom(msg.getFrom());
-		user.setTo(msg.getTo());
-		user.setChannelType(channelType);
-		user.setMsg(msg);
-
 		service.getNotificationId(msg);
 		producer.send(msg);
 		msg.setStatus("Message Received");
-		//return service.notify(msg, channelType);
 		return msg;
-		
-		// return service.getNotificationId(msg);
 	}
 
-	@ApiOperation(value = "Notify the given message to all channels like Slack and email.")
-	@ApiResponses(value = { @ApiResponse(code = 404, message = "Not Found") })
-	@PostMapping("/notifyAll")
-	public long notifyAll(@RequestBody Message msg) {
-		return service.notifyAll(msg);
-	}
 }

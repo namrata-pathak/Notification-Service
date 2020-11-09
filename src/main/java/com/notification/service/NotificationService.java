@@ -24,46 +24,14 @@ public class NotificationService {
 
 	private AtomicInteger notificationId = new AtomicInteger(1);
 
-	/**
-	 * Notifies channel identified by given channelType with the given message.
-	 * 
-	 * @param msg The message includes from, to, subject, body
-	 */
-	public long notifyAll(Message msg) {
-		for (Channel c : factory.getChannels()) {
-			msg.setId(notificationId.getAndIncrement());
-			c.notify(msg);
-			LOG.debug("ID = " + notificationId + ", Message sent = " + msg);
-		}
-		return notificationId.longValue();
-	}
 
 	/**
-	 * Notifies all configured channels(like slack and email) with the given
+	 * Notifies configured channels(like slack and email and sms) with the given
 	 * message.
 	 * 
-	 * @param channelType Type of chanel to notify - slack and email
+	 * @param channelType Type of channel to notify - slack, email, sms 
 	 * @param msg         The message includes from, to, subject, body
-	 */
-	/*
-	 * public long notify(ChannelType channelType, Message msg) {
-	 * 
-	 * 
-	 * 
-	 * msg.setId(notificationId.getAndIncrement());
-	 * factory.get(channelType).notify(msg);
-	 * LOG.debug("ID = "+notificationId+", Message sent = "+msg); return
-	 * notificationId.longValue(); }
-	 */
-
-	/*public long notify(KafkaUser kUser) {
-		Message msg = kUser.getMsg();
-		msg.setId(notificationId.getAndIncrement());
-		factory.get(kUser.getChannelType()).notify(msg);
-		LOG.debug("ID = " + notificationId + ", Message sent = " + msg);
-		return notificationId.longValue();
-	}*/
-	
+	 */	
 	public long notify(Message msg,ChannelType channelType) {
 		
 		msg.setId(notificationId.getAndIncrement());
