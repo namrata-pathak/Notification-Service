@@ -3,6 +3,7 @@ package com.notification.service;
 import javax.mail.internet.InternetAddress;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +17,12 @@ import com.twilio.sdk.type.PhoneNumber;
 
 @Component
 public class SmsChannel implements Channel {
-	public static final String ACCOUNT_SID = "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-	public static final String AUTH_TOKEN = "your_auth_token";
+	
+	@Value("${account_sid}")
+	private static String account_sid;
+
+	@Value("${auth_token}")
+	private static String auth_token;
 
 	@Autowired
 	private SmsValidator smsValidator;
@@ -31,7 +36,7 @@ public class SmsChannel implements Channel {
 			throw new RuntimeException("Invalid email format in - to address");
 		}
 		try {
-			MessageCreator message = Message.create(ACCOUNT_SID, new PhoneNumber(msg.getTo()),
+			MessageCreator message = Message.create(account_sid, new PhoneNumber(msg.getTo()),
 					new PhoneNumber(msg.getFrom()), msg.getBody());
 		} catch (Exception e) {
 			throw new RuntimeException("Failed to send message using sms channel, exception : " + e.getMessage(), e);
@@ -39,12 +44,12 @@ public class SmsChannel implements Channel {
 	}
 
 	static {
-		Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+		Twilio.init(account_sid, auth_token);
 	}
 
-    @Override
-    public boolean supports(ChannelType channelType) {
-        return ChannelType.sms == channelType;
-    }
-	
+	@Override
+	public boolean supports(ChannelType channelType) {
+		return ChannelType.sms == channelType;
+	}
+
 }
