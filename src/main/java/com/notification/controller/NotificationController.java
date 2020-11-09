@@ -1,7 +1,5 @@
 package com.notification.controller;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,22 +11,19 @@ import com.notification.exception.InvalidRequest;
 import com.notification.model.ChannelType;
 import com.notification.model.Message;
 import com.notification.service.KafkaProducer;
-import com.notification.service.KafkaUser;
 import com.notification.service.NotificationService;
 import com.notification.util.EmailValidator;
 import com.notification.util.SmsValidator;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/api/v1.0/notifier")
 @Api(value = "Notification APIs")
 public class NotificationController {
-
-	private static final Logger LOG = LogManager.getLogger(NotificationController.class);
 
 	@Autowired
 	private NotificationService service;
