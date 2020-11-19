@@ -1,13 +1,9 @@
 package com.notification.service;
 
-import javax.mail.internet.InternetAddress;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
-import com.google.common.collect.Lists;
 import com.notification.model.ChannelType;
 import com.notification.util.SmsValidator;
 import com.twilio.sdk.Twilio;
@@ -18,10 +14,10 @@ import com.twilio.sdk.type.PhoneNumber;
 @Component
 public class SmsChannel implements Channel {
 	
-	@Value("${account_sid}")
+	@Value("${twilio.ACCOUNT_SID}")
 	private static String account_sid;
 
-	@Value("${auth_token}")
+	@Value("${twilio.AUTH_TOKEN}")
 	private static String auth_token;
 
 	@Autowired
@@ -44,7 +40,7 @@ public class SmsChannel implements Channel {
 	}
 
 	static {
-		Twilio.init(account_sid, auth_token);
+		//Twilio.init(account_sid, auth_token);
 	}
 
 	@Override

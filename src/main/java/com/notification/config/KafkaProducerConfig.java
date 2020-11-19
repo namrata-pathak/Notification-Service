@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.config.TopicConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +22,6 @@ import org.springframework.util.ResourceUtils;
 import com.notification.model.Message;
 import com.notification.service.CustomPartitioner;
 import com.notification.service.KafkaConfig;
-import com.notification.service.KafkaUser;
 
 @Configuration
 public class KafkaProducerConfig {

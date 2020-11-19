@@ -15,26 +15,26 @@ import com.notification.model.Message;
 public class KafkaProducer {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-	
-	//private KafkaTemplate<String, KafkaUser> kafkaTemplate;
 	
 	@Autowired
 	private KafkaTemplate<String, Message> kafkaTemplate;
 
-	@Value("${kafka.topic}")
-	private String kafkaTopic;
-
-	//public void send(KafkaUser customer) {
-	//	String key = UUID.randomUUID().toString();
-	//	logger.info("sending data=" + customer);
-	//	kafkaTemplate.send(kafkaTopic, key, customer);
-	//}
+	@Value("${kafka.first.topic}")
+	private String kafkaFirstTopic;
 	
+	@Value("${kafka.second.topic}")
+	private String kafkaSecondTopic;
+
+	String key = UUID.randomUUID().toString();
 	public void send(Message msg) {
-		String key = UUID.randomUUID().toString();
+		
 		logger.info("sending data=" + msg);
-		kafkaTemplate.send(kafkaTopic, key, msg);
+		kafkaTemplate.send(kafkaFirstTopic, key, msg);
+	}
+	
+	public void updateStatus(Message msg) {
+		logger.info("sending data=" + msg);
+		kafkaTemplate.send(kafkaSecondTopic, key, msg);
 	}
 
 }

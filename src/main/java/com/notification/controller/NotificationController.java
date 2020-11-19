@@ -58,10 +58,12 @@ public class NotificationController {
 				throw new InvalidRequest("To Phone Number", msg.getTo());
 			}
 		}
-
+		
+		msg.setChannelType(channelType.name());
 		service.getNotificationId(msg);
-		producer.send(msg);
 		msg.setStatus("Message Received");
+		producer.send(msg);
+
 		return msg;
 	}
 

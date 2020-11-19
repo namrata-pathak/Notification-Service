@@ -23,7 +23,6 @@ import org.springframework.util.ResourceUtils;
 
 import com.notification.model.Message;
 import com.notification.service.KafkaConfig;
-import com.notification.service.KafkaUser;
 
 @EnableKafka
 @Configuration

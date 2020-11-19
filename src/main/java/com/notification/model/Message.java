@@ -19,6 +19,16 @@ public class Message {
 	private String sentTime;
 	@ApiModelProperty(hidden = true)
 	private String status;
+	@ApiModelProperty(hidden = true)
+	private String channelType;
+	
+	public String getChannelType() {
+		return channelType;
+	}
+
+	public void setChannelType(String channelType) {
+		this.channelType = channelType;
+	}
 
 	public String getStatus() {
 		return status;
