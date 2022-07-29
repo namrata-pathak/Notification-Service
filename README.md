@@ -2,7 +2,8 @@ Synopsis
 
 Generic Notification System
 
-This project demonstrates sample generic service for notification.
+This project demonstrates sample generic service for notification which accepts notification from API and send it to
+multiple channels (e.g. sms , email, slack etc ) 
 
 Capabilities supported: • Accept messages including from, to, body and subject • Ability to notify on multiple channels (email, slack, sms) • Deliver messages in correct order • Delete messages automatically after 7 Days
 
