@@ -2,7 +2,7 @@ Synopsis
 
 Generic Notification System
 
-This project demonstrate sample generic service for notification.
+This project demonstrates sample generic service for notification.
 
 Capabilities supported: • Accept messages including from, to, body and subject • Ability to notify on multiple channels (email, slack, sms) • Deliver messages in correct order • Delete messages automatically after 7 Days
 
@@ -26,6 +26,6 @@ Body: {
 Settings:
 
 1. Make sure all email and slack properties such as smt details and slack access tokens are configured properly in application.properties.
-If Gmail is configured as your mail service then set 'Allow less secure apps = ON' in Sing-in & Security of your google account to send message properly.
+If Gmail is configured as your mail service then set 'Allow less secure apps = ON' in Sign-in & Security of your google account to send message properly.
 2. Make sure Kafka bootstrap server detail is provided.
 3. Make sure you create accound id and auth token in twilio tool to use sms channel.
